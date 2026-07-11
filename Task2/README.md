@@ -1,27 +1,28 @@
 # AI Research Assistant
 
-An AI Research Assistant built with **LangChain** that uses **Google Gemini** as the primary model and **Groq GPT-OSS-120B** as a fallback. The assistant can answer research questions, generate bullet-point summaries, and describe images from public URLs.
+A lightweight AI Research Assistant built with **LangChain**, using **Google Gemini** as the primary model and **Groq GPT-OSS-120B** as an automatic fallback. The assistant answers research questions, summarizes text into bullet points, describes images from public URLs, and uses **LangSmith** for tracing agent and tool execution.
 
 ## Features
 
 * Google Gemini as the primary LLM
 * Automatic fallback to Groq GPT-OSS-120B
-* LangChain agent with tool calling
+* LangChain Agent with tool calling
+* LangSmith tracing for agents and tools
 * YAML-based system prompt
-* Environment variable support with `.env`
+* Environment variable support (`.env`)
 * Bullet-point generation
 * Image description from public URLs
-* Modular and extensible design
+* Modular and extensible architecture
 
-## Available Tools
+## Tech Stack
 
-### `make_bullet_points()`
-
-Converts text into clean bullet points.
-
-### `describe_image()`
-
-Analyzes and describes an image from a public URL in simple language.
+* Python
+* LangChain
+* LangSmith
+* Google Gemini
+* Groq
+* PyYAML
+* python-dotenv
 
 ## Project Structure
 
@@ -53,11 +54,25 @@ pip install -r requirements.txt
 
 ## Environment Variables
 
-Create a `.env` file:
+Create a `.env` file in the project root.
 
 ```env
 GOOGLE_API_KEY=your_google_api_key
 GROQ_API_KEY=your_groq_api_key
+
+LANGSMITH_API_KEY=your_langsmith_api_key
+LANGSMITH_TRACING=true
+LANGSMITH_PROJECT=AI-Research-Assistant
+```
+
+## Configuration
+
+Configure the system prompt in `prompt.yml`.
+
+```yaml
+RESEARCH_SYSTEM: |
+  You are an AI Research Assistant.
+  Answer clearly and accurately.
 ```
 
 ## Usage
@@ -79,38 +94,53 @@ https://example.com/image.jpg
 """
 ```
 
+## Available Tools
+
+| Tool                   | Description                                        |
+| ---------------------- | -------------------------------------------------- |
+| `make_bullet_points()` | Converts text into concise bullet points.          |
+| `describe_image()`     | Describes and explains an image from a public URL. |
+
 ## Workflow
 
 ```text
 User Query
-    │
-    ▼
+      │
+      ▼
 LangChain Agent
-    │
-    ├── Tool Required → Execute Tool
-    │
-    └── No Tool → Generate Response
-              │
-              ▼
-      Gemini (Primary)
-              │
-          On Failure
-              ▼
+      │
+      ├── Tool Selection
+      │
+      ├── Execute Tool(s)
+      │
+      ▼
+Gemini (Primary)
+      │
+      ├── Success → Response
+      │
+      └── Failure
+             │
+             ▼
      Groq GPT-OSS-120B
-              │
-              ▼
-       Final Response
+             │
+             ▼
+      Final Response
+             │
+             ▼
+      LangSmith Tracing
 ```
 
-## Future Improvements
+## LangSmith Tracing
 
-* PDF support
-* Web search
-* RAG integration
-* OCR support
-* Conversation memory
-* Streaming responses
+LangSmith records the complete execution of the application, including:
 
-## License
+* Agent execution
+* Tool calls
+* LLM requests and responses
+* Execution timeline
+* Token usage
+* Errors and debugging information
 
-MIT License.
+This makes it easier to monitor, debug, and evaluate the agent's behavior.
+
+
