@@ -35,6 +35,7 @@ The assistant returns structured responses containing:
 
 ```
 .
+├── venv 
 ├── RA.ipynb              # Main notebook
 ├── prompt.yml            # System prompt
 ├── .env                  # API key
