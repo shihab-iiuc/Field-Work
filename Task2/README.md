@@ -28,7 +28,8 @@ A lightweight AI Research Assistant built with **LangChain**, using **Google Gem
 
 ```text
 .
-├── app.py
+├── venv
+├── main.py
 ├── prompt.yml
 ├── .env
 ├── requirements.txt
