@@ -1,0 +1,2 @@
+refund_id,customer_id,invoice_id,amount,reason,status,approver,created_at,acted_at
+R-628a5a00,TEST-C1,INV-T1,50.00,duplicate charge test,approved,auto-duplicate-rule,2026-07-14 15:19:57.102552,2026-07-14 15:19:57.102552
