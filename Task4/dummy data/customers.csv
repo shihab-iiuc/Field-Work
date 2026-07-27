@@ -1,0 +1,7 @@
+customer_id,phone_number,name,plan,status,since
+C1001,+880147548993,John Doe,Premium,Active,2024-01-15
+C1002,+880177548994,Jane Smith,Basic,Inactive,2023-11-20
+C1003,+880187548995,Alice Johnson,Standard,Active,2024-03-05
+C1004,+880197548996,Bob Brown,Premium,Active,2024-02-10
+C1005,+880127548997,Charlie Davis,Basic,Inactive,2023-12-01
+TEST-C1,+1000000000,Test User,,,

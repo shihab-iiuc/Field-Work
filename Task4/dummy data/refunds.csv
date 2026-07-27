@@ -1,0 +1,4 @@
+refund_id,invoice_id,amount,refund_date,status
+R1001,INV-001,20.00,2024-02-15,Processed
+R1002,INV-004,50.00,2024-03-10,Completed
+R-628a5a00,INV-T1,50.00,2026-07-14,completed
